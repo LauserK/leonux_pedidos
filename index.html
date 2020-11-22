@@ -11,8 +11,8 @@
 	</head>
 	<body>
 		<nav>
-			<div class="nav-wrapper orange lighten-2">
-				<a href="#" class="brand-logo center">LEONUX PEDIDOS</a>
+			<div class="nav-wrapper indigo">
+				<a href="#" class="brand-logo center">LEONUX</a>
 			</div>
 		</nav>
 		<center>
@@ -37,7 +37,7 @@
 				<br />
 				<center>
 				<div class='row'>
-					<button type='submit' name='btn_login' class='col s12 btn btn-large waves-effect orange lighten-2'>ENTRAR</button>
+					<button type='submit' name='btn_login' class='col s12 btn btn-large waves-effect indigo'>ENTRAR</button>
 				</div>
 				</center>
 			</form>
@@ -48,11 +48,14 @@
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/materialize.min.js"></script>
 	<script>
+		function ir(lugar){
+			window.location.replace(lugar);			
+		}
 		$(document).ready(function(){
 			var usuario = window.localStorage.getItem("usuario");
 
 			if (usuario != null && usuario != ""){
-				window.location.replace("http://localhost");
+				ir("cliente.html");
 			} else {
 				$.post('/servicios.php?s=get_usuarios', function(returnedData){
 					let usuarios = JSON.parse(returnedData);
@@ -82,6 +85,7 @@
 						alert(info.mensaje);
 					}else{
 						window.localStorage.setItem("usuario", JSON.stringify(info.data));	
+						ir("cliente.html");
 					}
 					
 				}).fail(function(err){
